@@ -9,7 +9,7 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
-const uri = `mongodb://localhost:27017`;
+const uri = process.env.URI;
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
@@ -20,7 +20,7 @@ const client = new MongoClient(uri, {
 const run = async () => {
   // await client.connect();
   try {
-    const db = client.db('todo');
+    const db = client.db('todo-server-db');
     const taskCollection = db.collection('tasks');
 
     // app.get('/tasks', async (req, res) => {
